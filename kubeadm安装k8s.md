@@ -165,7 +165,15 @@ systemctl enable kubelet && systemctl start kubelet
 >
 > kubeadm config images list
 >
-> 可以发现这里都是国外的镜像
+> 可以发现这里都是国外的镜像  docker pull    docker tag    docker rmi
+>
+> k8s.gcr.io/kube-apiserver:v1.14.0
+> k8s.gcr.io/kube-controller-manager:v1.14.0
+> k8s.gcr.io/kube-scheduler:v1.14.0
+> k8s.gcr.io/kube-proxy:v1.14.0
+> k8s.gcr.io/pause:3.1
+> k8s.gcr.io/etcd:3.3.10
+> k8s.gcr.io/coredns:1.3.1
 
 ```
 k8s.gcr.io/kube-apiserver:v1.14.0
@@ -179,7 +187,7 @@ k8s.gcr.io/coredns:1.3.1
 
 > (2)解决国外镜像不能访问的问题
 
-- 创建kubeadm.sh脚本，用于拉取镜像/打tag/删除原有镜像
+- 创建kubeadm.sh脚本，用于拉取镜像/打tag/删除原有镜像       
 
 ```shell
 #!/bin/bash
