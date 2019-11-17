@@ -60,11 +60,40 @@ yum -y update
 yum install -y conntrack ipvsadm ipset jq sysstat curl iptables libseccomp
 ```
 
-### 1.4 安装Docker
+## 1.4 安装Docker
 
-> 根据之前学习的Docker方式，在每一台机器上都安装好Docker，版本为18.09.0
-
-`指定安装docker版本`：yum install -y docker-ce-18.09.0 docker-ce-cli-18.09.0 containerd.io 
+> 根据之前学习的Docker方式[Docker第一节课的笔记中也有这块的说明]
+>
+> 在每一台机器上都安装好Docker，版本为18.09.0
+>
+> ```shell
+> 01 安装必要的依赖
+> 	sudo yum install -y yum-utils \
+>     device-mapper-persistent-data \
+>     lvm2
+>     
+>     
+> 02 设置docker仓库
+> 	sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+> 	
+> 【设置要设置一下阿里云镜像加速器】
+> sudo mkdir -p /etc/docker
+> sudo tee /etc/docker/daemon.json <<-'EOF'
+> {
+>   "registry-mirrors": ["这边替换成自己的实际地址"]
+> }
+> EOF
+> sudo systemctl daemon-reload
+> 
+> 
+> 03 安装docker
+> 
+>   yum install -y docker-ce-18.09.0 docker-ce-cli-18.09.0 containerd.io
+> 
+> 
+> 04 启动docker
+> 	sudo systemctl start docker && sudo systemctl enable docker
+> ```
 
 ### 1.5 修改hosts文件
 
@@ -326,7 +355,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 > (4)查看pod验证一下
 >
-> 等待一会儿，同时可以发现像etc，controller，scheduler等组件都以pod的方式安装成功了
+> 等待一会儿【一定要等待最下面5个pod启动成功，处于ready状态再往下进行，不然后面会出错】
+>
+> 然后可以发现像etc，controller，scheduler等组件都以pod的方式安装成功了
 >
 > `注意`：coredns没有启动，需要安装网络插件
 
@@ -353,7 +384,7 @@ curl -k https://localhost:6443/healthz
 # 这里实际上就是用了一个calico.yaml文件，大家也可以把这个文件下载下来，看看里面的内容
 kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 
-# 确认一下calico是否安装成功
+# 确认一下calico是否安装成功【一定要等待所有的pod都成功了，处于ready状态再往下进行，不然会报错】
 kubectl get pods --all-namespaces -w
 ```
 
