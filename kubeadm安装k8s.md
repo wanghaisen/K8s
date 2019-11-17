@@ -324,7 +324,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 **此时kubectl cluster-info查看一下，输出类似于以下信息说明就连接成功了**
 
-![](D:/work/kubernetes1113/images/15.png)
+![](images/15.png)
 
 > (4)查看pod验证一下
 >
@@ -336,7 +336,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubectl get pods -n kube-system
 ```
 
-![](D:/work/kubernetes1113/images/16.png)
+![](images/16.png)
 
 > (5)健康检查
 
@@ -351,17 +351,10 @@ curl -k https://localhost:6443/healthz
 > calico网络插件：<https://docs.projectcalico.org/v3.9/getting-started/kubernetes/>
 
 > `calico，同样在master节点上操作`
->
-> > `注意`：calico镜像拉取可能拉取比较慢，可以先手动pull一下
-> >
-> > ```
-> > docker pull calico/pod2daemon-flexvol:v3.9.1
-> > docker pull calico/kube-controllers:v3.9.1
-> > docker pull calico/cni:v3.9.1
-> > ```
 
 ```
 # 在k8s中安装calico
+# 这里实际上就是用了一个calico.yaml文件，大家也可以把这个文件下载下来，看看里面的内容
 kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 
 # 确认一下calico是否安装成功
