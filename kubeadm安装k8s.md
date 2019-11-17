@@ -322,9 +322,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-**此时kubectl cluster-info查看一下，输出类似于以下信息说明就连接成功了**
-
-![](images/15.png)
+**此时kubectl cluster-info查看一下是否成功**
 
 > (4)查看pod验证一下
 >
@@ -335,8 +333,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 kubectl get pods -n kube-system
 ```
-
-![](images/16.png)
 
 > (5)健康检查
 
