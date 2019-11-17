@@ -182,7 +182,7 @@ vi /etc/docker/daemon.json
     
 systemctl restart docker
     
-# kubelet
+# kubelet，这边如果发现输出directory not exist，也说明是没问题的，大家继续往下进行即可
 sed -i "s/cgroup-driver=systemd/cgroup-driver=cgroupfs/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 	
 systemctl enable kubelet && systemctl start kubelet
