@@ -60,7 +60,7 @@ yum -y update
 yum install -y conntrack ipvsadm ipset jq sysstat curl iptables libseccomp
 ```
 
-## 1.4 安装Docker
+### 1.4 安装Docker
 
 > 根据之前学习的Docker方式[Docker第一节课的笔记中也有这块的说明]
 >
