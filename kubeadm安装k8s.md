@@ -170,7 +170,10 @@ EOF
 > (2)安装kubeadm&kubelet&kubectl
 
 ```shell
-yum install -y kubeadm-1.14.0-0 kubelet-1.14.0-0 kubectl-1.14.0-0
+### 单独安装
+yum install kubelet-1.14.0-0 -y
+yum install kubectl-1.14.0-0 -y
+yum install kubeadm-1.14.0-0 -y
 ```
 
 > (3)docker和k8s设置同一个cgroup
