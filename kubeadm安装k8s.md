@@ -252,7 +252,7 @@ done
 - 运行脚本和查看镜像
 
 ```
-# 运行脚本
+# 运行脚本   注意每个节点单独执行 由于每个节点下周比较慢导致拉取失败
 sh ./kubeadm.sh
 
 # 查看镜像
@@ -384,7 +384,7 @@ curl -k https://localhost:6443/healthz
 
 ```
 # 在k8s中安装calico
-# 这里实际上就是用了一个calico.yaml文件，大家也可以把这个文件下载下来，看看里面的内容
+# 这里实际上就是用了一个calico.yaml文件，大家也可以把这个文件下载下来，看看里面的内容  
 kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 
 # 确认一下calico是否安装成功【一定要等待所有的pod都成功了，处于ready状态再往下进行，不然会报错】
